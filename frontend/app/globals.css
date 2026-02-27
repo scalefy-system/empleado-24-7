@@ -1,0 +1,369 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #FAF6F1;
+  --cream-dark: #F0E8DE;
+  --cream-border: #E2D5C8;
+  --rose: #C9967A;
+  --rose-light: #E8C4B0;
+  --rose-dark: #A8765A;
+  --gold: #B8973A;
+  --gold-light: #D4B86A;
+  --charcoal: #2C2C2C;
+  --gray: #8A8A8A;
+  --gray-light: #C8C8C8;
+  --white: #FFFFFF;
+  --success: #7AAF8A;
+  --warning: #D4A853;
+  --danger: #C97A7A;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: var(--cream);
+  color: var(--charcoal);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+button {
+  font-family: var(--font-sans);
+}
+
+input, textarea, select {
+  font-family: var(--font-sans);
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* Fade In Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out forwards;
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Pulse glow effect for icons */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(201, 150, 122, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(201, 150, 122, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cream-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rose-light);
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .animate-fade-in-up,
+  .animate-fade-in,
+  .animate-slide-in-right,
+  .animate-scale-in,
+  .stagger-children > * {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* React Day Picker - Calendario de Reserva */
+.rdp {
+  --rdp-accent-color: var(--rose);
+  --rdp-background-color: var(--rose);
+  margin: 0;
+  width: 100%;
+  max-width: 380px;
+  font-size: 16px;
+}
+
+.rdp-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rdp-months {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.rdp-month {
+  width: 100%;
+}
+
+.rdp-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+  margin-bottom: 0.75rem;
+  width: 100%;
+}
+
+.rdp-caption_label {
+  font-family: var(--font-serif);
+  font-size: 1.5rem !important;
+  font-weight: 500;
+  color: var(--charcoal);
+}
+
+.rdp-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.rdp-nav_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--charcoal);
+  transition: all 0.2s;
+}
+
+.rdp-nav_button:hover {
+  background: var(--cream-dark);
+  color: var(--rose);
+}
+
+.rdp-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  width: 100%;
+}
+
+.rdp-head {
+  display: contents;
+}
+
+.rdp-head_row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rdp-head_cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  font-weight: 500 !important;
+  font-size: 0.7rem !important;
+  color: var(--gray) !important;
+  padding: 0.5rem 0.25rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.rdp-tbody {
+  display: contents;
+}
+
+.rdp-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100%;
+  margin: 2px 0;
+}
+
+.rdp-cell {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 0.2rem !important;
+}
+
+.rdp-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: none;
+  background: transparent;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rdp-day:hover:not(.rdp-day_selected):not(:disabled) {
+  background: var(--rose-light);
+  color: var(--charcoal);
+}
+
+.rdp-day_selected {
+  background: var(--rose) !important;
+  color: white !important;
+  font-weight: 500;
+}
+
+.rdp-day_selected:hover {
+  background: var(--rose-dark) !important;
+}
+
+.rdp-day_today:not(.rdp-day_selected) {
+  font-weight: 600;
+  color: var(--rose);
+}
+
+.rdp-day_disabled {
+  color: var(--gray-light);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.rdp-day_outside {
+  color: var(--gray-light);
+  opacity: 0.5;
+}
